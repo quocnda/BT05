@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long C[100][100];
+void sett()
+{
+    C[0][1]=1;
+   
+    C[0][0]=1;
+    C[1][1]=1;
+    C[0][2]=1;
+    C[1][2]=2;
+    C[2][2]=1;
+    for(int i=3;i<=100;i++) {
+        for(int j=0;j<=i;j++)
+        {
+            if(j==0||j==i)
+            {
+                C[j][i]=1;
+            }
+            else
+            {
+                C[j][i]=C[j][i-1]+C[j-1][i-1];
+            }
+        }
+    }
+}
+int main()
+{
+    int a,b;
+    sett();
+    while(true) {
+        cin>>a>>b;
+        if(a==-1&&b==-1) {
+            break;
+        }
+        cout<<C[b][a]<<endl;
+    }
+}
