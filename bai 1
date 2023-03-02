@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+ int n,m,q;
+ int ans[1000][1000];
+ char a[100][100];
+ int dx[8]={-1,0,1,1,1,0,-1,-1};
+ int dy[8]={-1,-1,-1,0,1,1,1,0};
+ void init()
+ {
+     for(int i=0;i<n;i++) {
+        for(int j=0;j<m;j++) {
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;
+     }
+ }
+ void init1() {
+    for(int i=0;i<n;i++) {
+        for(int j=0;j<m;j++) {
+            cout<<a[i][j]<<" ";
+        }
+        cout<<endl;
+     }
+ }
+ int cnt(int x,int y)
+ {
+     int cnt1=0;
+     for(int i=0;i<8;i++) {
+        if(x+dx[i]>=0&&x+dx[i]<m&&y+dy[i]>=0&&y+dy[i]<n) {
+            if(a[x+dx[i]][y+dy[i]]=='M'){
+                cnt1++;
+            }
+        }
+     }
+     return cnt1;
+ }
+int main() {
+
+
+  cin>>n>>m>>q;
+
+
+  for(int i=0;i<n;i++) {
+    for(int j=0;j<m;j++) {
+        cin>>a[i][j];
+        ans[i][j]=-1;
+    }
+  }
+  while(q--) {
+     int x,y;
+     cin>>x>>y;
+     if(a[x][y]=='E') {
+        ans[x][y]=cnt(x,y);
+     }
+     else {
+        init();
+        cout<<"YOU'RE DEAD!"<<endl;
+        init1();
+     }
+  }
+}
